@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 
+// custom logger middleware
+var logger = require('./logger');
+app.use(logger);
+
 // static middleware serving files from the public folder
 app.use(express.static('public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
