@@ -1,8 +1,11 @@
 var express = require('express');
 var app = express();
 
+// static middleware serving files from the public folder
+app.use(express.static('public'));
+
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/public/index.html');
+  response.sendFile('index.html');
 });
 
 var port = process.env.PORT || 3000;
