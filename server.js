@@ -6,13 +6,8 @@ app.get('/', function(request, response) {
 });
 
 app.get('/blocks', function(request, response) {
-  var blocks = '<ul><li>Fixed</li><li>Movable</li></ul>';
-  response.send(blocks);
+  response.redirect('/parts');
 });
-
-// send pure html
-// run in terminal:
-// curl -i localhost:3000/blocks
 
 
 app.listen(3000, function() {
