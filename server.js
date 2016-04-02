@@ -6,9 +6,10 @@ app.get('/', function(request, response) {
 });
 
 app.get('/blocks', function(request, response) {
-  response.redirect('/parts');
+  response.redirect(301, '/parts');
 });
 
+// status 301: move Permanently
 
 app.listen(3000, function() {
   console.log('Listening on port 3000...');
