@@ -1,0 +1,25 @@
+{
+  "name": "learn_express_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KachynskyyOleksiy/learn-ExpressJS.git"
+  },
+  "author": "Oleksiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KachynskyyOleksiy/learn-ExpressJS/issues"
+  },
+  "homepage": "https://github.com/KachynskyyOleksiy/learn-ExpressJS#readme",
+  "dependencies": {
+    "bower": "^1.7.7",
+    "express": "^4.9.8"
+  }
+}

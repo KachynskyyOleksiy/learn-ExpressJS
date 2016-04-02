@@ -1,0 +1,23 @@
+{
+  "name": "learn_express_js",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Oleksiy"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/KachynskyyOleksiy/learn-ExpressJS",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.2"
+  }
+}
