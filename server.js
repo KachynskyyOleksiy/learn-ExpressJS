@@ -6,11 +6,11 @@ app.get('/', function(request, response) {
 });
 
 app.get('/blocks', function(request, response) {
-  var blocks = ['Fixed', 'Movable', 'Rotating'];
-  response.json(blocks);
+  var blocks = '<ul><li>Fixed</li><li>Movable</li></ul>';
+  response.send(blocks);
 });
 
-// send json object.
+// send pure html
 // run in terminal:
 // curl -i localhost:3000/blocks
 
