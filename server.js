@@ -9,8 +9,13 @@ app.get('/', function(request, response) {
   response.sendFile('index.html');
 });
 
+var blocks = {
+  'Fixed': 'Fixed description', 
+  'Movable': 'Movable description', 
+  'Rotating': 'Rotating description'
+};
+
 app.get('/blocks', function(request, response) {
-  var blocks = ['Fixed', 'Movable', 'Rotating'];
   if (request.query.limit >= 0){
     response.json(blocks.slice(0, request.query.limit));
   } else {
@@ -18,6 +23,18 @@ app.get('/blocks', function(request, response) {
   };
 });
 
+app.get('/blocks/:name', function(request, response) {
+  var description = blocks[request.params.name];
+  if (!description){
+    response.status(404).json('No description found for ' + request.params.name);
+  } else {
+    response.json(description);
+  };
+});
+
+// test:
+// curl -i localhost:3000/blocks/Fixed
+// curl -i localhost:3000/blocks/Banana
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
