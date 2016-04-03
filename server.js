@@ -14,7 +14,6 @@ var blocks = {
   'Rotating': 'Rotating description'
 };
 
-
 app.param('name', function(request, response, next) {
   var name = request.params.name;
   var block = name[0].toUpperCase() + name.slice(1).toLowerCase();
@@ -28,34 +27,35 @@ app.get('/', function(request, response) {
   response.sendFile('index.html');
 });
 
-app.get('/blocks', function(request, response) {
-  if (request.query.limit >= 0){
-    response.json(blocks.slice(0, request.query.limit));
-  } else {
-    response.json(Object.keys(blocks));
-  };
-});
+app.route('/blocks')
+  .get(function(request, response) {
+    if (request.query.limit >= 0){
+      response.json(blocks.slice(0, request.query.limit));
+    } else {
+      response.json(Object.keys(blocks));
+    };
+  })
+  .post(parseUrlencoded, function(request, response) {
+    var newBlock = request.body;
+    blocks[newBlock.name] = newBlock.description;
 
-app.get('/blocks/:name', function(request, response) {
-  var description = blocks[request.blockName];
-  if (!description){
-    response.status(404).json('No description found for ' + request.params.name);
-  } else {
-    response.json(description);
-  };
-});
+    response.status(201).json(newBlock.name);
+  });
 
-app.post('/blocks', parseUrlencoded, function(request, response) {
-  var newBlock = request.body;
-  blocks[newBlock.name] = newBlock.description;
+app.route('/blocks/:name')
+  .get(function(request, response) {
+    var description = blocks[request.blockName];
+    if (!description){
+      response.status(404).json('No description found for ' + request.params.name);
+    } else {
+      response.json(description);
+    };
+  })
+  .delete(function(request, response) {
+    delete blocks[request.blockName];
+    response.sendStatus(200);
+  });
 
-  response.status(201).json(newBlock.name);
-});
-
-app.delete('/blocks/:name', function(request, response) {
-  delete blocks[request.blockName];
-  response.sendStatus(200);
-});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
