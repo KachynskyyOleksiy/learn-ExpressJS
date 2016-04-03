@@ -105,3 +105,8 @@ input[type="submit"] {
   float: left;
   padding-right: 10px;
 }
+
+.icon {
+  width: 17px;
+  height: 17px;
+}
