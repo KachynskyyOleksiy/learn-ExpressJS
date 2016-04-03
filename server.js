@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+var parseUrlencoded = bodyParser.urlencoded({extended: false});
+
 // static middleware serving files from the public folder
 app.use(express.static('public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
@@ -40,6 +43,13 @@ app.get('/blocks/:name', function(request, response) {
   } else {
     response.json(description);
   };
+});
+
+app.post('/blocks', parseUrlencoded, function(request, response) {
+  var newBlock = request.body;
+  blocks[newBlock.name] = newBlock.description;
+
+  response.status(201).json(newBlock.name);
 });
 
 // test:
