@@ -52,10 +52,10 @@ app.post('/blocks', parseUrlencoded, function(request, response) {
   response.status(201).json(newBlock.name);
 });
 
-// test:
-// curl -i localhost:3000/blocks/Fixed
-// curl -i localhost:3000/blocks/fixed
-// curl -i localhost:3000/blocks/FiXeD
+app.delete('/blocks/:name', function(request, response) {
+  delete blocks[request.blockName];
+  response.sendStatus(200);
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
